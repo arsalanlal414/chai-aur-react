@@ -1,13 +1,13 @@
 // import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom';
 
-// interface GitHubUserData {
-//     followers: number;
-//     avatar_url: string;
-// }
+interface GitHubUserData {
+    followers: number;
+    avatar_url: string;
+}
 
 function Github() {
-    const data = useLoaderData()
+    const data = useLoaderData() as GitHubUserData | null;
 
     // const [data, setData] = useState<GitHubUserData | null>(null); // Initialize as null or undefined
     // useEffect(() => {
@@ -37,7 +37,7 @@ function Github() {
  
 export default Github;
 
-export const githubInfoLoader = async () =>{
+export const githubInfoLoader = async (): Promise<GitHubUserData> =>{
     const response = await fetch(`https://api.github.com/users/arsalanlal414`);
     return response.json()
 }
